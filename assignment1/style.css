@@ -1,0 +1,258 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #333;
+}
+
+header {
+    background-color: #34516C; /* Sky */
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 3rem;
+    box-shadow: #34516C 0px 0px 5px;
+}
+#item-page{
+    padding: 1rem;
+}
+
+header img {
+    width: 150px;
+    height: auto;
+
+}
+
+nav {
+
+    align-content: center;
+    background-color: white;
+    padding: 3rem;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+
+}
+
+nav a {
+    background-color: transparent;
+    color: #34516C;
+    padding: 10px 30px;
+    border: 2px solid #34516C;
+    border-radius: 50px;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    flex-grow: 1; /* Ensure buttons grow evenly */
+    max-width: 200px; /* Set a maximum width for buttons */
+    min-width: 100px;
+    box-shadow: #34516C 0px 0px 2px;
+
+}
+
+nav a:hover {
+    background-color: #34516C;
+    color: white;
+
+}
+
+nav a.icon {
+    display: none;
+}
+
+
+.container, .section {
+    padding: 0.5rem;
+    text-align: center;
+}
+.video-iframe-container{
+
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 2rem;
+}
+.iframe-container, .video-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+iframe, video {
+    width: 500px;
+    height: 300px;
+}
+
+
+.products-container, .cart-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+}
+
+.product-card, .cart-item {
+    border: 1px solid #919CAD;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: #A4D3F2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*.product-Image {*/
+/*    max-width: 500px;*/
+/*    max-height: 250px;*/
+/*}*/
+.product-card img,
+.cart-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.cta-button, .view-details-button, .remove-button, .view-cart-button, .shop-more-button{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    margin: 0.5rem;
+
+}
+
+.cta-button {
+    background-color: #F2BE1A;
+}
+
+.cta-button:hover {
+    background-color: #d1a019;
+}
+
+
+.view-details-button {
+    background-color: #0099D2;
+}
+
+.view-details-button:hover {
+    background-color: #007BB5;
+}
+
+
+.view-cart-button {
+    background-color: #F47721;
+    margin-top: 1rem;
+}
+
+.view-cart-button:hover {
+    background-color: #F47712;
+}
+
+
+.remove-button {
+    background-color: #be1622;
+}
+
+.remove-button:hover {
+    background-color: #be1612;
+}
+
+.shop-more-button{
+    background-color: #34516c;
+}
+
+
+.product-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Footer */
+footer{
+    margin-top: 2rem;
+    background-color: #34516c;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+}
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+}
+footer span{
+    font-size: 0.5rem;
+}
+
+.footer a{
+    color: #0099d2;
+}
+.info{
+    padding: 1rem;
+    flex: 1 1 200px;
+    align-content: center;
+}
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .product-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-button, .view-details-button{
+        margin: 0.5rem 0;
+        order: 1;
+    }
+    .view-cart-button, .shop-more-button{
+        order: 2;
+    }
+}
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center the buttons in the column */
+    }
+
+    nav a:not(:first-child) { display: none; }
+    nav a.icon {
+        float: right;
+        display: block;
+    }
+
+    nav a .responsive {
+        display: block;
+        text-align: left;
+        float: none;
+    }
+
+
+    nav a {
+
+        width: 90%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
