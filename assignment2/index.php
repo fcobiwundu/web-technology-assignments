@@ -1,5 +1,5 @@
 <?php
-// Include the database connection file
+session_start();
 include 'connect.php';
 ?>
 
@@ -7,13 +7,20 @@ include 'connect.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Union Shop - Home</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Header with the navigation links as well as buger menu -->
+<!-- Example: Greeting at top -->
+<div class="greeting">
+    <?php if (isset($_SESSION["user_name"])): ?>
+        <p>Welcome back, <?php echo htmlspecialchars($_SESSION["user_name"]); ?>!</p>
+    <?php else: ?>
+        <p>Hello, Guest.</p>
+    <?php endif; ?>
+</div>
+
 <header>
     <img src="resources/images/logos/logo.svg" alt="Student Union Logo">
     <h1>Welcome to the Student Union Shop</h1>
@@ -30,6 +37,14 @@ include 'connect.php';
         <a href="index.php">Home</a>
         <a href="products.php">Products</a>
         <a href="cart.php">Cart</a>
+
+        <?php if (isset($_SESSION["user_name"])): ?>
+            <!-- If the user or session does store logged in, show Logout -->
+            <a href="logout.php">Logout</a>
+        <?php else: ?>
+            <!-- If thr user or session does not store logged in, show Login -->
+            <a href="login.php">Login</a>
+        <?php endif; ?>
     </nav>
 </header>
 
