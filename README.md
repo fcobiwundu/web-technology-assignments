@@ -51,3 +51,25 @@ This repository contains two web technology assignments developed for the **Stud
 
 ---
 
+## 🔧 Changes to Schema
+1. 
+1. **Added `category` column to `tbl_products`**  
+   - Allows product categorization for better filtering.
+   - Implemented with:  
+     ```sql
+     ALTER TABLE tbl_products ADD COLUMN category VARCHAR(50) NOT NULL;
+     ```
+
+2. **Modified `password` column in `tbl_users` for security**  
+   - Now stores **hashed passwords** instead of plaintext.
+   - Implemented with:  
+     ```sql
+     ALTER TABLE tbl_users MODIFY COLUMN password VARCHAR(255) NOT NULL;
+     ```
+
+3. **Added foreign key constraint to `tbl_orders`**  
+   - Links orders to users for better tracking.
+   - Implemented with:  
+     ```sql
+     ALTER TABLE tbl_orders ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES tbl_users(id);
+     ```
