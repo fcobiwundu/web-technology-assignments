@@ -52,24 +52,53 @@ This repository contains two web technology assignments developed for the **Stud
 ---
 
 ## 🔧 Changes to Schema
-1. 
-1. **Added `category` column to `tbl_products`**  
-   - Allows product categorization for better filtering.
-   - Implemented with:  
-     ```sql
-     ALTER TABLE tbl_products ADD COLUMN category VARCHAR(50) NOT NULL;
-     ```
 
-2. **Modified `password` column in `tbl_users` for security**  
-   - Now stores **hashed passwords** instead of plaintext.
-   - Implemented with:  
-     ```sql
-     ALTER TABLE tbl_users MODIFY COLUMN password VARCHAR(255) NOT NULL;
-     ```
+1. Created connect.php 
+**Added `connect.php` for Database Connection** 
+ - Purpose: Centralized database connection using PDO for security and reusability.
+ - Implementation: Created connect.php to handle database connectivity.
+ - Uses prepared statements for security.
+**Example snippet:**
+```php
+    <?php
+    // Database configuration
+    $host = "localhost"; 
+    $dbname = "your_database_name";
+    $username = "your_database_username";
+    $password = "your_database_password";
 
-3. **Added foreign key constraint to `tbl_orders`**  
-   - Links orders to users for better tracking.
-   - Implemented with:  
-     ```sql
-     ALTER TABLE tbl_orders ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES tbl_users(id);
-     ```
+    try {
+        // Connect to MySQL using PDO
+        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username,  $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Database Connection Failed: " . $e->getMessage());
+    }
+    ?>
+```
+
+2. Created index.php as the Homepage
+ - Purpose: Displays a dynamic homepage with:
+ - Greeting message based on session state.
+ - Special offers fetched from tbl_offers in the database.
+ - Navigation bar with Login/Logout visibility based on authentication.
+**Key Additions:**
+ - Session-based personalized greeting:
+**Snippet:**
+```php
+<?php
+session_start();
+if (isset($_SESSION["user_name"])) {
+    echo "Welcome back, " . htmlspecialchars($_SESSION["user_name"]) . "!";
+} else {
+    echo "Hello, Guest. <a href='login.php'>Login</a>";
+}
+?>
+// Logout button only shown when user is logged in:
+
+<?php if (isset($_SESSION["user_id"])): ?>
+    <a href="logout.php">Logout</a>
+<?php else: ?>
+    <a href="login.php">Login</a>
+<?php endif; ?>
+```
