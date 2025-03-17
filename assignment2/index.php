@@ -7,50 +7,51 @@ include 'connect.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Union Shop - Home</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Example: Greeting at top -->
-<div class="greeting">
-    <?php if (isset($_SESSION["user_name"])): ?>
-        <p>Welcome back, <?php echo htmlspecialchars($_SESSION["user_name"]); ?>!</p>
-    <?php else: ?>
-        <p>Hello, Guest.</p>
-    <?php endif; ?>
-</div>
-
 <header>
-    <img src="resources/images/logos/logo.svg" alt="Student Union Logo">
-    <h1>Welcome to the Student Union Shop</h1>
+    <div class="header-container">
+        <div class="logo-title">
+            <img src="resources/images/logos/logo.svg" alt="Student Union Logo" />
+            <h1>Student Union Shop</h1>
+        </div>
 
-    <!-- Burger Menu for Mobile -->
-    <div class="burger-menu" id="burger-menu" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Navigation Links -->
-    <nav id="nav-links" class="nav-links">
-        <a href="index.php">Home</a>
-        <a href="products.php">Products</a>
-        <a href="cart.php">Cart</a>
-
-        <?php if (isset($_SESSION["user_name"])): ?>
+        <nav class="nav-links" id="nav-links">
+            <a href="index.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="cart.php">Cart</a>
+            
+            <?php if (isset($_SESSION["user_name"])): ?>
             <!-- If the user or session does store logged in, show Logout -->
             <a href="logout.php">Logout</a>
-        <?php else: ?>
-            <!-- If thr user or session does not store logged in, show Login -->
-            <a href="login.php">Login</a>
-        <?php endif; ?>
-    </nav>
+            <?php else: ?>
+                <!-- If thr user or session does not store logged in, show Login -->
+                <a href="login.php">Login</a>
+            <?php endif; ?>
+        </nav>
+        
+        <div class="burger-menu" id="burger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+      
+    </div>
 </header>
 
 <!-- Hero section -->
 <div class="container">
-    <h2>Welcome to the official Student Union Shop!</h2>
+    <?php if (isset($_SESSION["user_name"])): ?>
+        <h2>Welcome back, <?php echo htmlspecialchars($_SESSION["user_name"]); ?>to the 
+            official Student Union Shop!</h2>
+    <?php else: ?>
+        <h2>Welcome to the official Student Union Shop!</h2>
+    <?php endif; ?>
+
     <p>Explore our exclusive range of hoodies, jumpers, and t-shirts designed for students.</p>
 </div>
 
@@ -67,16 +68,6 @@ include 'connect.php';
         }
         ?>
     </ul>
-</div>
-
-<!-- iframe and mp4 container -->
-<div class="video-iframe-container">
-    <div class="video-container">
-        <video src="resources/video/video.mp4" title="Student Union Video" controls></video>
-    </div>
-    <div class="iframe-container">
-        <iframe src="https://www.youtube.com/embed/EI_lco-qdw8" title="Student Union Video" allowfullscreen></iframe>
-    </div>
 </div>
 
 <!-- Footer -->
