@@ -24,12 +24,13 @@ include 'connect.php';
             <a href="index.php">Home</a>
             <a href="products.php">Products</a>
             <a href="cart.php">Cart</a>
-            
+                        
             <?php if (isset($_SESSION["user_name"])): ?>
             <!-- If the user or session does store logged in, show Logout -->
             <a href="logout.php">Logout</a>
             <?php else: ?>
                 <!-- If thr user or session does not store logged in, show Login -->
+                <a href="register.php">Sign Up</a>
                 <a href="login.php">Login</a>
             <?php endif; ?>
         </nav>
@@ -46,7 +47,7 @@ include 'connect.php';
 <!-- Hero section -->
 <div class="container">
     <?php if (isset($_SESSION["user_name"])): ?>
-        <h2>Welcome back, <?php echo htmlspecialchars($_SESSION["user_name"]); ?>to the 
+        <h2>Welcome back, <?php echo htmlspecialchars($_SESSION["user_name"]); ?> to the 
             official Student Union Shop!</h2>
     <?php else: ?>
         <h2>Welcome to the official Student Union Shop!</h2>
