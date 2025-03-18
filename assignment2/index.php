@@ -56,7 +56,6 @@ include 'connect.php';
     <p>Explore our exclusive range of hoodies, jumpers, and t-shirts designed for students.</p>
 </div>
 
-<!-- Special Offers Section -->
 <div class="offers-container">
     <h2>Current Offers</h2>
     <ul>
