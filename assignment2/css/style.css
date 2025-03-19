@@ -70,6 +70,10 @@ header {
     background-color: var(--white);
     color: var(--primary);
 }
+.nav-links a.selected {
+    background-color: var(--white);
+    color: var(--primary);
+}
 
 /* Burger Menu (Desktop hidden) */
 .burger-menu {
@@ -150,6 +154,31 @@ header {
     }
 }
 
+.container {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Filter Buttons */
+.filter-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 2px solid #34516C;
+  border-radius: 25px;
+  color: #34516C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.filter-btn:hover {
+  background-color: #34516C;
+  color: white;
+}
+.filter-btn.selected {
+    background-color: #34516C;
+    color: white;
+}
 
 .offers-container {
     text-align: center;
@@ -216,22 +245,6 @@ header {
     color: #fff;
 }
 
-/* Filter Buttons */
-.filter-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  margin: 0 5px;
-  border: 2px solid #34516C;
-  border-radius: 25px;
-  color: #34516C;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.filter-btn:hover {
-  background-color: #34516C;
-  color: white;
-}
 
 /* Footer */
 footer {
