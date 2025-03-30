@@ -4,7 +4,7 @@ include 'connect.php';
 
 $message = "";
 if (isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['id'])) {
-    // If usre is not logged in redirect to login.php
+    // If usre is not logged in, redirect to login.php
     if (!isset($_SESSION["user_id"])) {
         header("Location: login.php");
         exit();
@@ -12,16 +12,18 @@ if (isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['id'])) {
     
     $product_id = intval($_GET['id']);
     
+    // Retrieve product title to display in confirmation message
     $stmtProduct = $conn->prepare("SELECT product_title FROM tbl_products WHERE product_id = :id");
     $stmtProduct->bindParam(':id', $product_id, PDO::PARAM_INT);
     $stmtProduct->execute();
     $prod = $stmtProduct->fetch(PDO::FETCH_ASSOC);
     
     if ($prod) {
+        // Initialize cart
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
-         // add or increment the product quantity in the session cart
+          // add or increment the product quantity in the session cart
         if (isset($_SESSION['cart'][$product_id])) {
             $_SESSION['cart'][$product_id]++;
         } else {
