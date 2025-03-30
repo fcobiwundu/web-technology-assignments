@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $lowercase   = preg_match('@[a-z]@', $pass);
             $digit       = preg_match('@[0-9]@', $pass);
             $specialChar = preg_match('/[!@#$%^&*()_+\-=\[\]{};:\'"\\|,.<>\/?！＠＃＄％＾＆＊（）＿＋－＝［］｛｝；：‘’“”＼｜，．＜＞／？]/', $pass);
-            //
+            // 
             //@[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]+@
 
             if (strlen($pass) < 8 || !$uppercase || !$lowercase || !$digit || !$specialChar) {
@@ -122,3 +122,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <script src="js/auth.js"></script>
 </body>
 </html>
+
+
+
+
+
+What are the best practices for staying safe online, especially when using public Wi-Fi or shared networks?
+
+Explain the role of two-factor authentication in cybersecurity and why it’s important for everyday users.
+
+What are some common signs that a device or account has been hacked, and what should someone do if it happens?
