@@ -3,10 +3,12 @@
 **📅 Deadline:** 1st April 2025  
 **📌 Technologies Used:** PHP, MySQL, HTML, CSS, JavaScript  
 
-**🌐 URL:** https://vesta.uclan.ac.uk/~fcobiwundu/assignment2 
+**🌐 URL:** https://vesta.uclan.ac.uk/~fcobiwundu/assignment2
 **👤Test User Credentials:** 
 - Email = testuser@gmail.com 
 - Password = Testuser&12345
+
+**🌐 Github Respository:** https://github.com/fcobiwundu/web-technology-assignments/tree/main/assignment2
 
 **1 Description:**
 - Extends **Assignment 1** by integrating a **server-side backend** using PHP and MySQL.
