@@ -40,25 +40,25 @@ $filter = $_GET['filter'] ?? 'all';
 $search = $_GET['search'] ?? '';
 
 $sql = "SELECT * FROM tbl_products";
-$whereClauses = [];
+$where = [];
 
 // Filter logic
 if ($filter === 'hoodie') {
-    $whereClauses[] = "product_type LIKE '%Hoodie%'";
+    $where[] = "product_type LIKE '%Hoodie%'";
 } elseif ($filter === 'jumper') {
-    $whereClauses[] = "product_type LIKE '%Jumper%'";
+    $where[] = "product_type LIKE '%Jumper%'";
 } elseif ($filter === 'tshirt') {
-    $whereClauses[] = "product_type LIKE '%Tshirt%'";
+    $where[] = "product_type LIKE '%Tshirt%'";
 }
 
 // Search logic
 if (!empty($search)) {
-    $whereClauses[] = "(product_title LIKE :search OR product_desc LIKE :search)";
+    $where[] = "(product_title LIKE :search OR product_desc LIKE :search)";
 }
 
-// Combine WHERE clauses if any
-if (!empty($whereClauses)) {
-    $sql .= " WHERE " . implode(" AND ", $whereClauses);
+// Combine WHERE  if any
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
 }
 
 // Order by product_id
@@ -137,10 +137,7 @@ $stmt->execute();
         echo "<img src='" . htmlspecialchars($row['product_image']) . "' alt='" . htmlspecialchars($row['product_title']) . "'>";
         
         // Product Title
-        echo "<h3>" . htmlspecialchars($row['product_title']) . "</h3>";
-        
-        // Product Description
-        
+        echo "<h3>" . htmlspecialchars($row['product_title']) . "</h3>";     
         
         // Product Price
         echo "<p>Price: £" . htmlspecialchars($row['product_price']) . "</p>";

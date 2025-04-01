@@ -2,7 +2,42 @@
 session_start();
 include 'connect.php';
 
-// Ensure cart exists in session
+// Process actions from GET
+if (isset($_GET['action'])) {
+
+    // Epmty cart 
+    if ($_GET['action'] === 'empty') {
+        $_SESSION['cart'] = [];
+        $_SESSION['cart_message'] = "Your cart has been emptied.";
+        header("Location: cart.php");
+        exit();
+    }
+    // checkout create an order record in database
+    elseif ($_GET['action'] === 'checkout') {
+        // If user is not logged in redirect to login.php
+        if (!isset($_SESSION["user_id"])) {
+            header("Location: login.php");
+            exit();
+        }
+        $product_ids = json_encode($_SESSION['cart']);
+        
+        // Insert order into database
+        $stmtOrder = $conn->prepare("INSERT INTO tbl_orders (user_id, product_ids) VALUES (:user_id, :product_ids)");
+        $stmtOrder->bindParam(':user_id', $_SESSION["user_id"], PDO::PARAM_INT);
+        $stmtOrder->bindParam(':product_ids', $product_ids);
+        
+        if ($stmtOrder->execute()) {
+            $_SESSION['cart_message'] = "Your order has been placed successfully.";
+            $_SESSION['cart'] = []; // Clear cart
+        } else {
+            $_SESSION['cart_message'] = "There was an error processing your order.";
+        }
+        header("Location: cart.php");
+        exit();
+    }
+}
+
+// ensure  cart in session
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -14,6 +49,62 @@ if (!isset($_SESSION['cart'])) {
     <title>Student Union Shop - Cart</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .link a{
+            text-align: center;
+            color: #34516C;
+            text-decoration: none;
+        }
+        .link a:hover{
+            text-decoration: underline;
+        }
+        .cart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cart-item {
+            border: 1px solid #919CAD;
+            padding: 1rem;
+            border-radius: 5px;
+            background: #A4D3F2;
+            text-align: center;
+        }
+        .cart-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .cart-item p {
+            margin: 0.5rem 0;
+        }
+        .grand-total {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .cart-actions {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 2px solid #34516C;
+            border-radius: 25px;
+            color: #34516C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #34516C;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
@@ -46,12 +137,19 @@ if (!isset($_SESSION['cart'])) {
     <h2 style="text-align: center;">Your Cart</h2>
     
     <?php
-    // If the cart is empty, display a message
+    // Display message if exists
+    if (isset($_SESSION['cart_message'])) {
+        echo "<p style='text-align: center; color: green;'>" . $_SESSION['cart_message'] . "</p>";
+        unset($_SESSION['cart_message']);
+    }
+    
+    // Check if cart is empty
     if (empty($_SESSION['cart'])) {
         echo "<p style='text-align: center;'>Your cart is empty.</p>";
     } else {
         echo "<div class='cart-container'>";
         $grandTotal = 0;
+        
         // Loop over each product in the cart
         foreach ($_SESSION['cart'] as $id => $quantity) {
             $stmt = $conn->prepare("SELECT * FROM tbl_products WHERE product_id = :id");
@@ -81,10 +179,16 @@ if (!isset($_SESSION['cart'])) {
     }
     ?>
     
-    <div style="text-align: center; margin-top: 1rem;">
+    <div class="cart-actions">
+
+    <?php if (isset($_SESSION["user_name"])): ?>
         <a href="products.php" class="btn">Continue Shopping</a>
-        <a href="checkout.php" class="btn">Proceed to Checkout</a>
-        <a href="products.php" class="btn">Empty Cart</a>
+        <a href="cart.php?action=checkout" class="btn">Proceed to Checkout</a>
+        <a href="cart.php?action=empty" class="btn">Empty Cart</a>
+   <?php else: ?>
+        <p class="link">Please <a href="login.php">Login</a> or <a href="register.php">Sign Up</a> to view your cart.</p>
+    <?php endif; ?>
+        
     </div>
 </main>
 

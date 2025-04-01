@@ -1,40 +1,14 @@
-# Web Technology Assignments
-
-## 📌 Overview
-This repository contains two web technology assignments developed for the **Student Union Shop at UCLan**. The assignments focus on **front-end** and **back-end** web development, implementing modern design principles, interactivity, and database management.
-
----
-
-## 📂 Assignment 1: Frontend Web Application (40%)
-**📅 Deadline:** 17th December 2024  
-**📌 Technologies Used:** HTML, CSS, JavaScript  
-
-**🌐 Description:**
-- A fully responsive **front-end web application** for an online shop.
-- Implements **interactive product displays** and a **shopping cart**.
-- Uses **localStorage** to manage cart functionality.
-- Pages included:
-  - `index.html` → Homepage with a welcome message and embedded video.
-  - `products.html` → Displays all available products.
-  - `item.html` → Shows detailed information about a selected product.
-  - `cart.html` → Displays the shopping cart (no checkout required).
-- **No frameworks** (like Bootstrap) are used.
-
-📌 **Features:**
-✔️ Navigation menu for seamless browsing.  
-✔️ Valid HTML & CSS following best practices.  
-✔️ Session-based product selection (via JavaScript).  
-✔️ Shopping cart with add/remove functionality.  
-✔️ Mobile-friendly with CSS media queries.  
-✔️ README file with detailed documentation.  
-✔️ Video demo showcasing project functionality.  
-
----
 
 ## 📂 Assignment 2: Backend Web Application (60%)
 **📅 Deadline:** 1st April 2025  
 **📌 Technologies Used:** PHP, MySQL, HTML, CSS, JavaScript  
-**🌐 Description:**
+
+**🌐 URL:** https://vesta.uclan.ac.uk/~fcobiwundu/assignment2 
+**👤Test User Credentials:** 
+- Email = testuser@gmail.com 
+- Password = Testuser&12345
+
+**1 Description:**
 - Extends **Assignment 1** by integrating a **server-side backend** using PHP and MySQL.
 - Enables **user authentication** and **database-driven content**.
 - Implements a **login system** and a **product management system**.
@@ -103,4 +77,19 @@ session_start();
 <?php endif; ?>
 ```
 
-    
+**📚 Resources Used:**
+1. SQL LIKE operator – https://www.w3schools.com/sql/sql_like.asp
+I used the LIKE operator to implement filtering logic for products based on their type (e.g., Hoodie, Jumper, Tshirt).
+It allowed write dynamic WHERE clauses that match product types partially using % wildcards.
+
+2. PHP implode function – https://www.w3schools.com/PHP/func_string_implode.asp
+The implode() function was used to convert arrays into readable strings
+
+3. PHP MySQL prepared statements – https://www.w3schools.com/php/php_mysql_prepared_statements.asp
+I used prepared statements throughout the project to securely interact with the database and prevent SQL injection binding parameters with bindParam()
+
+4. PHP intval() – https://www.w3schools.com/php/func_var_intval.asp
+The intval() function was used to sanitize incoming GET and POST data, ensuring that IDs and other numerical values were cast properly.
+
+5. SQL ORDER BY ASC – https://www.w3schools.com/sql/sql_ref_asc.asp
+ORDER BY ASC in review and product queries to ensure the display was organized oldest  alphabetically.
